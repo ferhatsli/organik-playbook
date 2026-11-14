@@ -15,18 +15,43 @@ Skill adı: `urun-yol-haritasi`. Claude "yeni ürün", "rakip analizi", "storybo
 
 ## Kurulum
 
-### Claude Code (terminal)
+En kolayı: Claude'una bu repo linkini ver ve "Bunu kur" de. Agent aşağıdaki adımları izler.
+
+### Agent için kurulum talimatı (Claude bu bölümü uygular)
+1. Plugin'i kur:
+   ```bash
+   claude plugin marketplace add ferhatsli/organik-playbook
+   claude plugin install organik-playbook@organik-playbook
+   ```
+   `claude` komutu yoksa (masaüstü uygulaması ya da Cowork), kullanıcıya şu yolu söyle: **Customize → Plugins → Add → Add marketplace → Add from a repository** → `ferhatsli/organik-playbook`, sonra **organik-playbook**'u ekle.
+2. Kurulumu doğrula: `claude plugin list` çıktısında `organik-playbook@organik-playbook` **enabled** görünmeli.
+3. Araçları hazırla:
+   - Python 3.10+ olmalı.
+   - ffmpeg PATH'te yoksa `pip install imageio-ffmpeg` çalıştır.
+4. API anahtarları:
+   - Kullanıcının çalışma klasöründe `.env.apify` ve `.env.wiro` var mı kontrol et; yoksa boş şablon olarak oluştur:
+     ```
+     # .env.apify
+     APIFY_TOKEN=
+     # .env.wiro
+     WIRO_API_KEY=
+     WIRO_API_SECRET=
+     ```
+   - Kullanıcıdan anahtarları **bu dosyalara kendisinin yapıştırmasını** iste; anahtarları sohbete yazdırma.
+   - Klasör bir git reposuysa `.env*` satırını `.gitignore`'a ekle.
+   - Anahtarlar apify.com (Settings → API & Integrations) ve wiro.ai (Projects → API keys) panellerinden alınır.
+5. Test (anahtarlar girildikten sonra). `<skill>` = kurulu plugin içindeki `skills/urun-yol-haritasi` klasörü:
+   - `python <skill>/scripts/wiro.py ara "kling"` → model listesi gelmeli.
+   - `python <skill>/scripts/apify.py apify~instagram-profile-scraper '{"usernames": ["instagram"]}' test.json` → "1 kayıt" yazmalı.
+6. Kullanıcıya kısa bir özet ver: skill adı `urun-yol-haritasi`, elle çağırma `/organik-playbook:urun-yol-haritasi`, başlamak için "Yeni ürüne giriyoruz: <ürün>, rakipler: <linkler>" demesi yeterli.
+
+### Elle kurulum: Claude Code (terminal)
 ```bash
 claude plugin marketplace add ferhatsli/organik-playbook
 claude plugin install organik-playbook@organik-playbook
 ```
-Repo özel olduğu için önce GitHub erişimin olmalı. Davet kabul edildikten sonra bir kez çalıştır:
-```bash
-gh auth login
-gh auth setup-git
-```
 
-### Claude masaüstü uygulaması / Cowork
+### Elle kurulum: Claude masaüstü uygulaması / Cowork
 **Customize → Plugins → Add → Add marketplace → Add from a repository** → `ferhatsli/organik-playbook`. Ardından **organik-playbook** eklentisini ekle.
 
 ### Yalnız claude.ai sohbeti (ZIP)
