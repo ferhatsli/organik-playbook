@@ -1,0 +1,14 @@
+{
+  "name": "organik-playbook",
+  "description": "Organik dropshipping için ürün yol haritası ve araçları.",
+  "owner": {
+    "name": "ferhatsli"
+  },
+  "plugins": [
+    {
+      "name": "organik-playbook",
+      "source": "./plugins/organik-playbook",
+      "description": "Organik dropshipping ürün yol haritası: rakip analizi, marka, AI video üretimi, Instagram testi, satış ve DM otomasyonu."
+    }
+  ]
+}

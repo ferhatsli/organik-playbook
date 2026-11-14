@@ -1,0 +1,5 @@
+.env*
+!.env.ornek
+__pycache__/
+*.mp4
+*.zip
